@@ -1,0 +1,127 @@
+.bottom-panel {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-top: 20px;
+    gap: 40px;
+}
+
+.control-column {
+    flex: 1;
+    max-width: 400px;
+}
+
+.summary-column {
+    flex: 1;
+    max-width: 400px;
+}
+
+.graph-column {
+    flex: 1;
+    max-width: 500;
+}
+
+.small-graph {
+    height: 500px;
+    width: 100%;
+}
+
+#start-button {
+    display: flex;
+    justify-content: center;
+    margin: auto;
+    margin-bottom: 25px;
+    width: 250px;
+    padding: 10px 30px;
+    font-size: 30px;
+    border-radius: 15px;
+    border: 2px solid black;
+}
+
+#current-price-display {
+    text-align: center;
+    margin: auto;
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+#trade-quantity {
+    display: block;
+    justify-content: center;
+    margin: auto;
+    text-align: center;
+    width: 40px;
+    padding: 5px;
+    font-size: 20px;
+}
+
+#button-row {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+#buy-button, #sell-button {
+    width: 100px;
+    padding: 10px 20px;
+    font-size: 30px;
+    border-radius: 15px;
+    border: 2px solid black;
+}
+
+#buy-button {
+    background-color:rgb(79, 172, 79);
+    color:black;
+}
+
+#sell-button {
+    background-color: rgb(248, 42, 42);
+    color:black;
+}
+
+#buy-button:hover, #sell-button:hover {
+    opacity: 0.7;
+    transition: 0.3s;
+}
+
+#trade-status {
+    text-align: center;
+    margin: auto;
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+label {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+    margin-bottom: 3px;
+    font-size: 19px;
+}
+
+/* Removes up and down arrows */
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+#update-speed {
+    display: block;
+    justify-content: center;
+    margin: auto;
+    text-align: center;
+    margin-bottom: 10px;
+    width: 65px;
+    padding: 5px;
+    font-size: 20px;
+}
