@@ -32,25 +32,48 @@ class Portfolio:
     def calculateRoi(self, currentPrice):
         buyStack = []
         realizedProfit = 0
+        realizedCost = 0
 
         for trade in self.trades:
+            action = trade["Action"]
             price = trade["Price"]
-            if trade["Action"] == "Buy":
-                buyStack.append(price)
-            elif trade["Action"] == "Sell" and buyStack:
-                buyPrice = buyStack.pop(0)
-                realizedProfit += price - buyPrice
+            qty = trade["Quantity"]
 
-        unrealizedCost = sum(buyStack)
+            if action == "Buy":
+                buyStack.append([price, qty])
+
+            elif action == "Sell":
+                sellQty = qty
+                sellPrice = price
+
+                while sellQty > 0 and buyStack:
+                    buyPrice, buyQty = buyStack[0]
+                    matchedQty = min(buyQty, sellQty)
+
+                    realizedProfit += (sellPrice - buyPrice) * matchedQty
+                    realizedCost += buyPrice * matchedQty
+
+                    sellQty -= matchedQty
+                    buyQty -= matchedQty
+
+                    if buyQty == 0:
+                        buyStack.pop(0)
+                    else:
+                        buyStack[0][1] = buyQty
+
+        unrealizedCost = sum(price * qty for price, qty in buyStack)
         unrealizedValue = self.holdings * currentPrice
         unrealizedProfit = unrealizedValue - unrealizedCost
 
-        principal = sum(trade["Price"] for trade in self.trades if trade["Action"] == "Buy")
-        profit = INITIAL_CASH - self.cash
+        realizedROI = (realizedProfit / realizedCost) * 100 if realizedCost else 0
+        unrealizedROI = (unrealizedProfit / unrealizedCost) * 100 if unrealizedCost else 0
+
+        totalValue = self.cash + (self.holdings * currentPrice)
+        profit = totalValue - INITIAL_CASH
 
         return {
-            "Realized ROI": f"{(realizedProfit / principal) * 100:.2f}%" if principal else "0.00%",
-            "Unrealized ROI": f"{(unrealizedProfit / principal) * 100:.2f}%" if principal else "0.00%",
+            "Realized ROI": realizedROI,
+            "Unrealized ROI": unrealizedROI,
             "Profit": profit
         }
 
@@ -64,8 +87,6 @@ class Portfolio:
                 totalQuantity += 1
         
         aveCost = totalCost / totalQuantity if totalQuantity else 0
-        unrealizedProfit = (currentPrice - aveCost) * self.holdings
-        unrealizedRoi = (unrealizedProfit / (aveCost * self.holdings)) * 100 if self.holdings else 0
         
         roi = self.calculateRoi(currentPrice)
 
@@ -74,7 +95,7 @@ class Portfolio:
             "Quantity": self.holdings,
             "Average Cost": aveCost,
             "Current Price": currentPrice,
-            "Unrealized ROI": unrealizedRoi,
+            "Unrealized ROI": roi["Unrealized ROI"],
             "Realized ROI": roi["Realized ROI"],
             "Profit": roi["Profit"]
         }

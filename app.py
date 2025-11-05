@@ -111,8 +111,8 @@ def updateGraph(n_intervals, portfolioData):
         html.P(f"Average Cost: ${summary['Average Cost']:.2f}"),
         html.P(f"Current Price: ${summary['Current Price']:.2f}"),
         html.P(f"Unrealized ROI: {summary['Unrealized ROI']:.2f}%"),
-        html.P(f"Realized ROI: {summary['Realized ROI']}"),
-        html.P(f"Total Profit: ${summary['Profit']:.2f}")
+        html.P(f"Realized ROI: {summary['Realized ROI']:.2f}%"),
+        html.P(f"Profit: ${summary['Profit']:.2f}")
     ])
 
     for trade in portfolio.trades:
