@@ -1,7 +1,7 @@
 # S&P500 Historical Data Trading Simulator
 Interactive Dash/Plotly app using historical intraday S&P500 stock data to create a candlestick chart with trade logging and portfolio analytics.
 
-**Check it out on Heroku: link**
+**Check it out on Heroku: [link](https://bryanm-stock-sim.herokuapp.com)**
 
 **Fun fact:** The data is taken in one minute intervals allowing for more accurate trades, but don't worry you can set how fast (or slow) you want the data to appear.
 
