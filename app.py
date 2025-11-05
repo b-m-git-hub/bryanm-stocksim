@@ -6,6 +6,8 @@ import pandas as pd
 
 # Initialize the app
 app = Dash()
+server = app.server
+
 # Construct an empty graph
 fig = go.Figure()
 # App layout
@@ -173,4 +175,4 @@ def executeTrade(buyClicks, sellClicks, currentPrice, portfolioData, quantity, t
 
 # Boilerplate
 if __name__ == "__main__":
-    app.run(debug = True)
+    app.run(debug=True, host="0.0.0.0", port=8050)

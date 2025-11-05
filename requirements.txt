@@ -17,7 +17,7 @@ MarkupSafe==3.0.3
 multitasking==0.0.12
 narwhals==2.10.1
 nest-asyncio==1.6.0
-numpy==2.3.4
+numpy==2.2.6
 packaging==25.0
 pandas==2.3.3
 peewee==3.18.3

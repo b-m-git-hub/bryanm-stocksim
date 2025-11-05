@@ -10,9 +10,20 @@ Interactive Dash/Plotly app using historical intraday S&P500 stock data to creat
 ```bash
 git clone https://github.com/b-m-git-hub/bryanm-stocksim.git
 cd bryanm-stocksim
+```
+
+**Run with Python:**
+```bash
 pip install -r requirements.txt
 python app.py
 ```
+
+**Run with Docker:**
+```bash
+docker build -t stock-app
+docker run -p 8050:8050 stock-app
+```
+
 
 ## How It's Made:
 
