@@ -17,4 +17,4 @@ COPY . .
 EXPOSE 8050
 
 # Run APP
-CMD gunicorn -b 0.0.0.0:8050 app:server
+CMD gunicorn -b 0.0.0.0:${PORT:-8050} app:server
